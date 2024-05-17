@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Ollie Erdman",
+    "age": 23,
+    "gender": "male",
+    "avgMark": 10.6,
+    "onDuty": false,
+    "createdAt": "2022-11-02T16:14:58.000Z",
+    "updatedAt": "2022-11-02T16:14:58.000Z"
+  },
+  {
+    "name": "Louise Kreiger",
+    "age": 25,
+    "gender": "female",
+    "avgMark": 8.8,
+    "onDuty": true,
+    "createdAt": "2022-11-02T16:14:58.000Z",
+    "updatedAt": "2022-11-02T16:14:58.000Z"
+  },
+  {
+    "name": "Geneva Pfeffer",
+    "age": 21,
+    "gender": "female",
+    "avgMark": 12.3,
+    "onDuty": false,
+    "createdAt": "2022-11-02T16:14:58.000Z",
+    "updatedAt": "2022-11-02T16:14:58.000Z"
+  },
+  {
+    "name": "Mario Lehner",
+    "age": 22,
+    "gender": "male",
+    "avgMark": 9.6,
+    "onDuty": false,
+    "createdAt": "2022-11-02T16:14:58.000Z",
+    "updatedAt": "2022-11-02T16:14:58.000Z"
+  }
+]

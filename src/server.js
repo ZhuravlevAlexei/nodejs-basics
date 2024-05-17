@@ -4,6 +4,8 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 
+import { getAllStudents, getStudentById } from './services/students.js';
+
 // Читаємо змінну оточення PORT правильно функцією з файлу
 import { env } from './utils/env.js';
 const PORT = Number(env('PORT', '3000'));
@@ -35,9 +37,22 @@ export const startServer = () => {
     });
   });
 
-  app.use('*', (req, res, next) => {
-    res.status(404).json({
-      message: 'Not found',
+  app.get('/students', async (req, res) => {
+    const students = await getAllStudents();
+
+    res.status(200).json({
+      data: students,
+    });
+  });
+
+  app.get('/students/:studentId', async (req, res) => {
+    const { studentId } = req.params;
+    console.log('studentId: ', studentId);
+    const student = await getStudentById(studentId);
+    console.log('student: ', student);
+
+    res.status(200).json({
+      data: student,
     });
   });
 
