@@ -18,8 +18,8 @@ export const getStudentByIdController = async (req, res, next) => {
 
   // Додаємо базову обробку помилки
   if (!student) {
-    // next(new Error('Student not found as Error'));
-    next(createHttpError(404, 'Student not found as HttpError'));
+    // next(new Error('Student not found (as Error)'));
+    next(createHttpError(404, 'Student not found (via HttpError)'));
     return;
   }
 

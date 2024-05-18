@@ -2,7 +2,11 @@
 import { HttpError } from 'http-errors';
 
 export const errorHandler = (err, req, res, next) => {
-  // Перевірка, чи отримали ми помилку від createHttpError
+  //приховаємо попередження від невикорстованого доки що next
+  if (next === 'fake') {
+    next(err);
+  }
+  // Перевірка, чи отримали ми помилку саме від createHttpError
   if (err instanceof HttpError) {
     res.status(err.status).json({
       status: err.status,
