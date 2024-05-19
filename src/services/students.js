@@ -20,3 +20,58 @@ export const getStudentById = async (studentId) => {
   const student = await StudentsCollection.findById(studentId);
   return student;
 };
+
+export const createStudent = async (payload) => {
+  //payload буде таким
+  // {
+  //   "name": "John Doe",
+  //   "email": "jojndoe@mail.com",
+  //   "age": 10,
+  //   "gender": "male",
+  //   "avgMark": 10.3,
+  //   "onDuty": true
+  // }
+  // Тіло функції
+  const student = await StudentsCollection.create(payload);
+  return student;
+};
+
+export const deleteStudent = async (studentId) => {
+  const student = await StudentsCollection.findOneAndDelete({
+    _id: studentId,
+  });
+
+  return student;
+};
+
+export const updateStudent = async (studentId, payload, options = {}) => {
+  //payload буде таким
+  // {
+  //   "name": "John Doe",
+  //   "email": "jojndoe@mail.com",
+  //   "age": 10,
+  //   "gender": "male",
+  //   "avgMark": 10.3,
+  //   "onDuty": true
+  // }
+  // Тіло функції
+  const rawResult = await StudentsCollection.findOneAndUpdate(
+    { _id: studentId }, //query -1 параметр обов'язковий
+    payload, //update -2 параметр обов'язковий
+    {
+      new: true,
+      includeResultMetadata: true,
+      ...options,
+    }, //options -3 параметр обов'язковий при put, там передаємо
+    //трохи на додаток через options вище до цього об'єкту
+    //та цей за замовчуванням при patch, там нічого не передаємо,
+    //бо options пустий за замовчуванням
+  );
+
+  if (!rawResult || !rawResult.value) return null;
+
+  return {
+    student: rawResult.value,
+    isNew: Boolean(rawResult?.lastErrorObject?.upserted),
+  };
+};
