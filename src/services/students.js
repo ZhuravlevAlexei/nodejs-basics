@@ -16,6 +16,16 @@ export const getStudentById = async (studentId) => {
     // console.log(`Invalid id: ${studentId}`);
     return null;
   }
+
+  //варіант 2 через Error
+  // if (!mongoose.Types.ObjectId.isValid(contactId)) {
+  //   // console.log('Contact id is not valid for MongoDB', contactId);
+  //   // return null;
+  //   throw new Error(
+  //     'Contact id is not valid for MongoDB. Length must be 24 symbols.',
+  //   );
+  // }
+
   // console.log(`Valid id: ${studentId}`);
   const student = await StudentsCollection.findById(studentId);
   return student;
