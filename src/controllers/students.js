@@ -1,5 +1,6 @@
 // src/controllers/students.js
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
 import {
   getAllStudents,
@@ -10,7 +11,12 @@ import {
 } from '../services/students.js';
 
 export const getStudentsController = async (req, res) => {
-  const students = await getAllStudents();
+  const { page, perPage } = parsePaginationParams(req.query);
+  const students = await getAllStudents({
+    page,
+    perPage,
+  });
+  // const students = await getAllStudents();
 
   res.json({
     status: 200,
@@ -37,7 +43,6 @@ export const getStudentByIdController = async (req, res, next) => {
 };
 
 export const createStudentController = async (req, res) => {
-  // Тіло функції
   const student = await createStudent(req.body);
 
   res.status(201).json({
