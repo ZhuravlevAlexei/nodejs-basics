@@ -3,6 +3,7 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 // import studentsRouter from './routers/students.js';
 import router from './routers/index.js';
@@ -27,6 +28,8 @@ export const startServer = () => {
 
   app.use(cors());
 
+  app.use(cookieParser());
+
   app.use(
     pino({
       transport: {
@@ -37,7 +40,7 @@ export const startServer = () => {
 
   app.get('/', (req, res) => {
     res.json({
-      message: 'Hello World!',
+      message: 'Hello from `World of Students`!',
     });
   });
 

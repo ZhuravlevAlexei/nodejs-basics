@@ -1,5 +1,6 @@
 // src/db/models/user.js
 import { model, Schema } from 'mongoose';
+import { ROLES } from '../../constants/index.js';
 
 const usersSchema = new Schema(
   {
@@ -15,6 +16,11 @@ const usersSchema = new Schema(
     password: {
       type: String,
       required: true,
+    },
+    role: {
+      type: String,
+      enum: [ROLES.TEACHER, ROLES.PARENT],
+      default: ROLES.PARENT,
     },
   },
   {
