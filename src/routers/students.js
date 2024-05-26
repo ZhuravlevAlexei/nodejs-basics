@@ -20,31 +20,34 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const router = Router();
 
-router.get('/students', ctrlWrapper(getStudentsController));
+// '/students',
+router.get('/', ctrlWrapper(getStudentsController));
 
-router.get('/students/:studentId', ctrlWrapper(getStudentByIdController));
+// '/students/:studentId',
+router.get('/:studentId', ctrlWrapper(getStudentByIdController));
 
+// '/',
 router.post(
-  '/',
+  '',
   validateBody(createStudentSchema),
   ctrlWrapper(createStudentController),
 );
-// router.post('/students', ctrlWrapper(createStudentController));
 
-router.delete('/students/:studentId', ctrlWrapper(deleteStudentController));
+// '/students/:studentId',
+router.delete('/:studentId', ctrlWrapper(deleteStudentController));
 
+// '/students/:studentId',
 router.put(
-  '/students/:studentId',
+  '/:studentId',
   validateBody(createStudentSchema),
   ctrlWrapper(upsertStudentController),
 );
-// router.put('/students/:studentId', ctrlWrapper(upsertStudentController));
 
+// '/students/:studentId',
 router.patch(
-  '/students/:studentId',
+  '/:studentId',
   validateBody(updateStudentSchema),
   ctrlWrapper(patchStudentController),
 );
-// router.patch('/students/:studentId', ctrlWrapper(patchStudentController));
 
 export default router;
