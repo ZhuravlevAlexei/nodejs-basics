@@ -1,4 +1,5 @@
 // src/routers/students.js
+import { Router } from 'express';
 import { authenticate } from '../middlewares/authenticate.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
@@ -6,7 +7,7 @@ import {
   updateStudentSchema,
 } from '../validation/students.js';
 
-import { Router } from 'express';
+import { upload } from '../middlewares/multer.js';
 
 import {
   getStudentsController,
@@ -41,6 +42,7 @@ router.post(
   '/',
   checkRoles(ROLES.TEACHER),
   validateBody(createStudentSchema),
+  upload.single('photo'), //new
   ctrlWrapper(createStudentController),
 );
 // '/',
@@ -54,6 +56,7 @@ router.put(
   '/:studentId',
   checkRoles(ROLES.TEACHER),
   validateBody(createStudentSchema),
+  upload.single('photo'), //new
   ctrlWrapper(upsertStudentController),
 );
 // '/students/:studentId',
@@ -67,6 +70,7 @@ router.patch(
   '/:studentId',
   checkRoles(ROLES.TEACHER, ROLES.PARENT),
   validateBody(updateStudentSchema),
+  upload.single('photo'), //new
   ctrlWrapper(patchStudentController),
 );
 // '/students/:studentId',

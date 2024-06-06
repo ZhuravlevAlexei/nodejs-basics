@@ -29,7 +29,8 @@ const studentsSchema = new Schema(
     parentId: {
       type: Schema.Types.ObjectId,
       ref: 'users',
-    }, // нова властивість
+    },
+    photo: { type: String }, // нова властивість
   },
   {
     timestamps: true,
